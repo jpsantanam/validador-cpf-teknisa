@@ -1,26 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/jquery.inputmask.bundle.min.js"></script>
     <script src="../js/script.js" async></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Programa de Estágio Teknisa</title>
+    <title>Teknisa</title>
 </head>
+
 <body>
-    <div class="container">
-        <div class="header">
+    <main>
+        <header>
             <h1>Validador de CPF</h1>
-        </div>
-        <div class="body">
+        </header>
+        <section>
             <input type="text" id="cpf" placeholder="Insira o seu CPF" maxlength="14">
             <button id="botaoValidar" onclick="validaCPF()">Validar</button>
-        </div>
-        <div class="footer">
-            <span id="resultado"></span>
-        </div>
-    </div>
+        </section>
+        <footer>
+            <p id="resultado"></p>
+        </footer>
+    </main>
 </body>
+
 </html>

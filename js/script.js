@@ -6,31 +6,31 @@ const validaCPF = () => {
     const cpf = document.getElementById('cpf').value;
     const cpfLimpo = limpaFormatacao(cpf);
 
-    if(cpfLimpo.length != 11){
+    if (cpfLimpo.length != 11) {
         mostraResultado('CPF deve conter 11 dígitos.', 'red');
         return;
     }
 
-    if(verificaDigitosRepetidos(cpfLimpo)){
+    if (verificaDigitosRepetidos(cpfLimpo)) {
         mostraResultado('CPF não pode conter repetição do mesmo dígito.', 'red');
         return;
     }
 
     const digito1 = calculaDigitoVerificador(cpfLimpo, 1);
-    
-    if(!digito1) {
+
+    if (!digito1) {
         mostraResultado('CPF inválido.', 'red');
         return;
     }
 
     const digito2 = calculaDigitoVerificador(cpfLimpo, 2);
-    
-    if(!digito2) {
+
+    if (!digito2) {
         mostraResultado('CPF inválido.', 'red');
         return;
     }
 
-    mostraResultado(`CPF válido! - ${cpfLimpo}`, 'green');
+    mostraResultado(`CPF válido!`, 'green');
 }
 
 const calculaDigitoVerificador = (cpf, posicao) => {
@@ -38,7 +38,7 @@ const calculaDigitoVerificador = (cpf, posicao) => {
     let soma = 0;
     let multiplicador = 9 + posicao;
 
-    for(const numero of sequencia){
+    for (const numero of sequencia) {
         soma += multiplicador * Number(numero);
         multiplicador--;
     }
