@@ -11,20 +11,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/style.css">
-    <title>Teknisa</title>
+    <title>Validador de CPF</title>
 </head>
 
-<body>
-    <main>
-        <header>
-            <h1>Validador de CPF</h1>
+<body class="body">
+    <main class="main">
+        <header class="header">
+            <h1 class="h1">Validador de CPF</h1>
         </header>
-        <section>
-            <input type="text" id="cpf" placeholder="Insira o seu CPF" maxlength="14">
-            <button id="botaoValidar" onclick="validaCPF()">Validar</button>
+        <section class="section">
+            <input type="text" id="cpf" class="input" placeholder="Insira o seu CPF" maxlength="14">
+            <button id="validateButton" class="button" onclick="validateCpf()">Validar</button>
         </section>
-        <footer>
-            <p id="resultado"></p>
+        <footer class="footer">
+            <p id="result"></p>
         </footer>
     </main>
 </body>

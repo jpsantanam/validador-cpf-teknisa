@@ -2,64 +2,65 @@ $(document).ready(() => {
     $('#cpf').inputmask('999.999.999-99');
 });
 
-const validaCPF = () => {
-    const cpf = document.getElementById('cpf').value;
-    const cpfLimpo = limpaFormatacao(cpf);
+const validateCpf = () => {
+    const cpf = document.querySelector('#cpf').value;
+    const cleanedCpf = cleanCpf(cpf);
 
-    if (cpfLimpo.length != 11) {
-        mostraResultado('CPF deve conter 11 dígitos.', 'red');
+    if (cleanedCpf.length != 11) {
+        showResult('CPF deve conter 11 dígitos.', 'p--error');
         return;
     }
 
-    if (verificaDigitosRepetidos(cpfLimpo)) {
-        mostraResultado('CPF não pode conter repetição do mesmo dígito.', 'red');
+    if (checkRepeatedDigits(cleanedCpf)) {
+        showResult('CPF não pode conter repetição do mesmo dígito.', 'p--error');
         return;
     }
 
-    const digito1 = calculaDigitoVerificador(cpfLimpo, 1);
+    const firstDigit = calculateVerifierDigit(cleanedCpf, 1);
 
-    if (!digito1) {
-        mostraResultado('CPF inválido.', 'red');
+    if (!firstDigit) {
+        showResult('CPF inválido.', 'p--error');
         return;
     }
 
-    const digito2 = calculaDigitoVerificador(cpfLimpo, 2);
+    const secondDigit = calculateVerifierDigit(cleanedCpf, 2);
 
-    if (!digito2) {
-        mostraResultado('CPF inválido.', 'red');
+    if (!secondDigit) {
+        showResult('CPF inválido.', 'p--error');
         return;
     }
 
-    mostraResultado(`CPF válido!`, 'green');
+    showResult(`CPF válido!`, 'p--success');
 }
 
-const calculaDigitoVerificador = (cpf, posicao) => {
-    const sequencia = cpf.slice(0, 8 + posicao).split('');
-    let soma = 0;
-    let multiplicador = 9 + posicao;
+const calculateVerifierDigit = (cpf, position) => {
+    const sequence = cpf.slice(0, 8 + position).split('');
+    let sum = 0;
+    let multiplier = 9 + position;
 
-    for (const numero of sequencia) {
-        soma += multiplicador * Number(numero);
-        multiplicador--;
+    for (const number of sequence) {
+        sum += multiplier * Number(number);
+        multiplier--;
     }
 
-    const restoDivisao = (soma * 10) % 11;
-    const digito = cpf.slice(8 + posicao, 9 + posicao);
+    const remainder = (sum * 10) % 11;
+    const digit = cpf.slice(8 + position, 9 + position);
 
-    return restoDivisao == digito;
+    return remainder == digit;
 }
 
-const limpaFormatacao = (cpf) => {
+const cleanCpf = (cpf) => {
     cpf = cpf.replace(/\D/g, '');
     return cpf;
 }
 
-const mostraResultado = (texto, cor) => {
-    const span = document.querySelector("#resultado");
-    span.innerHTML = texto;
-    span.style.color = cor;
+const showResult = (text, className) => {
+    const paragraph = document.querySelector("#result");
+    paragraph.innerHTML = text;
+    paragraph.classList.remove("p--success", "p--error")
+    paragraph.classList.toggle(className);
 }
 
-const verificaDigitosRepetidos = (cpf) => {
+const checkRepeatedDigits = (cpf) => {
     return cpf.split('').every((d) => d === cpf[0]);
 }
