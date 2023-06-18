@@ -3,11 +3,11 @@ $(document).ready(() => {
 });
 
 const validateCpf = () => {
-    const cpf = document.querySelector('#cpf').value;
-    const cleanedCpf = cleanCpf(cpf);
-
     const ERROR_CLASS = 'p--error';
     const SUCCESS_CLASS = 'p--success';
+
+    const cpf = document.querySelector('#cpf').value;
+    const cleanedCpf = cleanCpf(cpf);
 
 
     if (cleanedCpf.length != 11) {
