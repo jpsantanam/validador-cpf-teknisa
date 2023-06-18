@@ -6,31 +6,35 @@ const validateCpf = () => {
     const cpf = document.querySelector('#cpf').value;
     const cleanedCpf = cleanCpf(cpf);
 
+    const ERROR_CLASS = 'p--error';
+    const SUCCESS_CLASS = 'p--success';
+
+
     if (cleanedCpf.length != 11) {
-        showResult('CPF deve conter 11 dígitos.', 'p--error');
+        showResult('CPF deve conter 11 dígitos.', ERROR_CLASS);
         return;
     }
 
     if (checkRepeatedDigits(cleanedCpf)) {
-        showResult('CPF não pode conter repetição do mesmo dígito.', 'p--error');
+        showResult('CPF não pode conter repetição do mesmo dígito.', ERROR_CLASS);
         return;
     }
 
     const firstDigit = calculateVerifierDigit(cleanedCpf, 1);
 
     if (!firstDigit) {
-        showResult('CPF inválido.', 'p--error');
+        showResult('CPF inválido.', ERROR_CLASS);
         return;
     }
 
     const secondDigit = calculateVerifierDigit(cleanedCpf, 2);
 
     if (!secondDigit) {
-        showResult('CPF inválido.', 'p--error');
+        showResult('CPF inválido.', ERROR_CLASS);
         return;
     }
 
-    showResult(`CPF válido!`, 'p--success');
+    showResult(`CPF válido!`, SUCCESS_CLASS);
 }
 
 const calculateVerifierDigit = (cpf, position) => {
