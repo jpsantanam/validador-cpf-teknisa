@@ -9,7 +9,6 @@ const validateCpf = () => {
     const cpf = document.querySelector('#cpf').value;
     const cleanedCpf = cleanCpf(cpf);
 
-
     if (cleanedCpf.length != 11) {
         showResult('CPF deve conter 11 dígitos.', ERROR_CLASS);
         return;
